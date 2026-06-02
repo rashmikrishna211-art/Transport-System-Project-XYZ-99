@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transport System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h1>Transport Booking</h1>
+    
+    <form action="/book" method="POST" class="row g-3 bg-light p-3 border">
+        <div class="col-md-3"><input type="number" name="p_id" class="form-control" placeholder="Passenger ID"></div>
+        <div class="col-md-3"><input type="number" name="s_id" class="form-control" placeholder="Schedule ID"></div>
+        <div class="col-md-2"><input type="text" name="seat" class="form-control" placeholder="Seat No"></div>
+        <div class="col-md-2"><input type="number" name="fare" class="form-control" placeholder="Fare"></div>
+        <div class="col-md-2"><button class="btn btn-success w-100">Book</button></div>
+    </form>
+
+    <h2 class="mt-5">Live Bookings (from SQL View)</h2>
+    <table class="table border">
+        <thead>
+            <tr><th>Passenger</th><th>Route</th><th>Seat</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            {% for b in bookings %}
+            <tr>
+                <td>{{ b.Passenger }}</td><td>{{ b.RouteName }}</td>
+                <td>{{ b.SeatNo }}</td><td>{{ b.Status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+<hr>
+<h3>Fleet & Drivers</h3>
+<table class="table border table-hover">
+    <thead class="table-info">
+        <tr><th>Vehicle</th><th>Type</th><th>Driver</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+        {% for v in vehicles %}
+        <tr>
+            <td>{{ v.VehicleNo }}</td><td>{{ v.Type }}</td>
+            <td>{{ v.DriverName or 'Unassigned' }}</td>
+            <td>{{ v.Status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr>
+<h3>Passenger Feedback</h3>
+<div class="row">
+    {% for f in feedbacks %}
+    <div class="col-md-4">
+        <div class="card p-2 mb-2">
+            <strong>{{ f.Name }} ({{ f.Rating }}/5 ⭐)</strong>
+            <p>{{ f.Comments }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<h3>Passenger Directory</h3>
+<table class="table border">
+    <thead>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Card Type</th></tr>
+    </thead>
+    <tbody>
+        {% for p in passengers %}
+        <tr>
+            <td>{{ p.PassengerID }}</td>
+            <td>{{ p.Name }}</td>
+            <td>{{ p.Email }}</td>
+            <td>{{ p.CardType }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

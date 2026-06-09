@@ -1,6 +1,6 @@
 # Public Transportation Optimization System
 A web-based dashboard for managing urban transit.
-![Project Dashboard](dashboard.png)
+![Project Dashboard](dashboard1.png)
 
 ## Tech Stack
 - **Frontend:** HTML5, Bootstrap 5
